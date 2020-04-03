@@ -1,0 +1,9 @@
+{
+  "projectId": "not required",
+  "baseUrl": "https://test.pcm.com",
+  "env": {
+    "CYPRESS_RECORD_KEY": "not required",
+    "USER_LOGIN": "your login here",
+    "USER_PASSWORD": "your password here"
+  }
+}
