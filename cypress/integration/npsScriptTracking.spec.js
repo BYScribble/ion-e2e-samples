@@ -49,11 +49,14 @@ describe('NPS Script Tracking should exist on all Admin Pages', function () {
                     //     });
 
 
+                    // Script should be loaded only one time
+                    cy.get('script[src*="js.hs-scripts.com/355484.js"]').should('have.length', 1);
+
                     cy.window().then(window => {
                         expect('HubSpotConversations' in window).to.be.true;
                         expect(typeof window.HubSpotConversations).to.equal('object');
                         expect(typeof window.HubSpotConversations.widget).to.equal('object');
-                    })
+                    });
 
                 })
             })
