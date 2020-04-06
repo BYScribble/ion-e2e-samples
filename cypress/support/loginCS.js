@@ -1,3 +1,14 @@
+// Cypress.on('uncaught:exception', (err) => {
+//     // returning false here prevents Cypress from
+//     // failing the test
+//     console.warn(err);
+//     if (err.message &&
+//         err.message.startsWith('Cannot set property \'status\' of undefined')) {
+//         return false;
+//     }
+//     return true;
+// });
+
 before(function () {
 
     // Cypress very rare can persist cookies when you re-run test manually
@@ -12,7 +23,6 @@ before(function () {
     if (acceptCookieBanner) {
         acceptCookieBanner.click()
     }
-
     // Log in Studio
     cy.get('#loginUsername').type(Cypress.env('USER_LOGIN'));
     cy.get('#loginPassword').type(Cypress.env('USER_PASSWORD'));
