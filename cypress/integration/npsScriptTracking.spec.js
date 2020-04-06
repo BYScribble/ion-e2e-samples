@@ -6,18 +6,16 @@ const $ = Cypress.$;
 
 // const links = new Set([...adminPages]);
 
-const filterPages = (pageUrl) => {
-    return pageUrl.indexOf('logout') === -1 // Do not visit logout page
-        && pageUrl.indexOf('previewpath') === -1; // preview path redirect login
-};
-
 const pagesToTest = _.uniqWith(adminPages,
     function (url1, url2) {
         // prevent same pages with different params like `Admin/Creative/3` and `/Admin/Creative/5`
         return url1.replace(/[0-9]/g, '') === url2.replace(/[0-9]/g, '');
     })
-    .filter(filterPages)
-    .sort();
+    .filter(function (pageUrl) {
+        return pageUrl.indexOf('logout') === -1 &&  // Do not visit logout page
+               pageUrl.indexOf('previewpath') === -1; // preview path redirect login
+    })
+    .sort(); // Looks more readable in test runner when sorted in alphabetical order
 
 describe('NPS Script Tracking should exist on all Admin Pages', function () {
     pagesToTest
