@@ -1,17 +1,20 @@
 // This code snippet prevent noisy exception on NON LOCAL environment
-// Cypress.on('uncaught:exception', (err) => {
-//     // returning false here prevents Cypress from
-//     // failing the test
-//     console.warn(err);
-//     if (err.message &&
-//         err.message.startsWith('Cannot set property \'status\' of undefined')) {
-//         return false;
-//     }
-//     return true;
-// });
+Cypress.on('uncaught:exception', (err) => {
+    // returning false here prevents Cypress from
+    // failing the test
+
+    // New Relic issue
+    if (err.message &&
+        (
+            err.message.startsWith('Cannot set property \'status\' of undefined') || // Chrome
+            err.message.includes('t.params is undefined'))// Firefox
+        ) {
+            return false;
+        }
+    return true;
+});
 
 before(function () {
-
     // Cypress very rare can persist cookies when you re-run test manually
     cy.clearCookie('ASP.NET_SessionId');
     cy.clearCookie('LiveBallAuth');

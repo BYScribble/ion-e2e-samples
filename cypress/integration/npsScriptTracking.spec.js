@@ -1,4 +1,5 @@
 import {adminPages} from '../configs/pages';
+import { visitOptions } from "../support/disableNewRelic";
 
 // Aliases
 const _ = Cypress._;
