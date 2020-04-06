@@ -1,3 +1,4 @@
+// This code snippet prevent noisy exception on NON LOCAL environment
 // Cypress.on('uncaught:exception', (err) => {
 //     // returning false here prevents Cypress from
 //     // failing the test
